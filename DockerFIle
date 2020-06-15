@@ -1,0 +1,6 @@
+FROM frolvlad/alpine-oraclejdk8:stem
+VOLUME /tmp
+ADD stationapp.jar stationapp.jar
+RUN sh -c 'touch /stationapp.jar'
+ENV JAVA_OPTS="-Dspring.profiles.active=default"
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /stationapp.jar"]

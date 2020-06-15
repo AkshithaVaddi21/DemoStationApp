@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import static org.springframework.data.jpa.domain.Specifications.*;
+import static com.demo.stationapp.service.StationSpec.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,12 +19,19 @@ import com.demo.stationapp.repository.StationRepository;
 @Service
 @Transactional
 public class StationService {
+	
+	private static final Logger log = LoggerFactory.getLogger(StationService.class);
 
 	@Autowired
 	private StationRepository stationRepo;
 	
-	public List<Station> findAllStations() {
-		return (List<Station>) stationRepo.findAll();
+	public List<Station> findAllStations(Station station) {
+		
+		List<Station> stations = stationRepo.findAll(where(hasName(station.getName()))
+												           .and(hasStationId(station.getStationId()))
+												           .and(hasHDEnabled(station.getHdEnabled())));
+		log.info("==== {}", stations);
+		return stations;
 	}
 	
 	public Station createStation(Station station) {

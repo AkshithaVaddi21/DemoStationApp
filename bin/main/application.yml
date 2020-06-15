@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+   profiles:
+       active: default
+   application:
+       name: stationapp
+   datasource:
+       url: jdbc:h2:mem:stationdb;DB_CLOSE_DELAY=-1
+       username: sa
+       password:
+       driver-class-name: org.h2.Driver
+   h2:
+    console:
+      enabled: true
+      path: /h2
+   flyway:
+      url: jdbc:h2:mem:stationdb;DB_CLOSE_DELAY=-1
+      user: sa
+      password:
+      schemas: stationdb
+   jpa:
+      hibernate.use-new-id-generator-mappings: true
+      database-platform: org.hibernate.dialect.H2Dialect
+      hibernate.ddl_auto: none
+      show-sql: true
+   jackson:
+      serialization.write-dates-as-timestamps: false
+      deserialization:
+        adjust_dates_to_context_time_zone: false
+        fail_on_unknown_properties: false
+  
+  
+security:
+  basic:
+    enabled: false
+    
+management:
+  security:
+      enabled: false
+  port: 8081          

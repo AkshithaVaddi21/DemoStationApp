@@ -31,7 +31,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
     	String url = "www.demo-apps.com";
         return new ApiInfoBuilder()
-            .title("Demo Station RESP API")
+            .title("Demo Station REST API")
             .description("API for demonstrating station API")
             .version("1.0")
             .contact(new Contact("Station Dev", url, "XXXX@demoapps.com"))

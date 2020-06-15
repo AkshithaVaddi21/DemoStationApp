@@ -27,7 +27,7 @@ public class Station implements Serializable {
 	private String name;
 	
 	@Column(name = "HDENABLED")
-	private boolean hdEnabled;
+	private Boolean hdEnabled;
 	
 	@Column(name = "CALLSIGN")
 	private String callSign;
